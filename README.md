@@ -35,67 +35,67 @@ This repository contains an Azure Function that fetches book data from a CSV fil
     - `page`: The page number to retrieve (default: 1)
     - `pagesize`: The number of records per page (default: 100)
 
-## Getting data and using rest api endpoint
+## Getting data using rest api endpoint
 
-    ```bash
-    import requests
-    import pandas as pd
-    
-    def fetch_data_from_azure_function(page, pagesize):
-        # Replace with your Azure Function endpoint URL
-        function_url = "https://publicbookdataset.azurewebsites.net/api/getbooks"
-        
-        # Set the parameters
-        params = {
-            'page': page,
-            'pagesize': pagesize
-        }
-        
-        # Make the HTTP request to the Azure Function endpoint
-        response = requests.get(function_url, params=params)
-        
-        # Check if the request was successful (status code 200)
-        if response.status_code == 200:
-            # Parse the JSON response
-            return response.json()
-        else:
-            # Print an error message if the request was not successful
-            print(f"Error: {response.status_code}")
-            return None
-    
-    def main():
-        # Assign initial page and pagesize parameters
-        page = 1
-        pagesize = 100
-        
-        # Initialize an empty list to store JSON data
-        json_data = []
-        
-        while True:
-            # Fetch data from Azure Function endpoint
-            data = fetch_data_from_azure_function(page, pagesize)
-            
-            # Break the loop if no more data is returned
-            if not data:
-                break
-            
-            # Append the data to the list
-            json_data.extend(data)
-            
-            # Increment the page for the next iteration
-            page += 1
-        
-        # Convert the list of JSON data to a Pandas DataFrame
-        df = pd.DataFrame(json_data)
-        
-        # Display the resulting DataFrame
-        print("Data Frame:")
-        print(df.head())
-    
-    if __name__ == "__main__":
-        main()
+```python
+import requests
+import pandas as pd
 
-    ```
+def fetch_data_from_azure_function(page, pagesize):
+    # Replace with your Azure Function endpoint URL
+    function_url = "https://publicbookdataset.azurewebsites.net/api/getbooks"
+    
+    # Set the parameters
+    params = {
+        'page': page,
+        'pagesize': pagesize
+    }
+    
+    # Make the HTTP request to the Azure Function endpoint
+    response = requests.get(function_url, params=params)
+    
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        # Parse the JSON response
+        return response.json()
+    else:
+        # Print an error message if the request was not successful
+        print(f"Error: {response.status_code}")
+        return None
+
+def main():
+    # Assign initial page and pagesize parameters
+    page = 1
+    pagesize = 100
+    
+    # Initialize an empty list to store JSON data
+    json_data = []
+    
+    while True:
+        # Fetch data from Azure Function endpoint
+        data = fetch_data_from_azure_function(page, pagesize)
+        
+        # Break the loop if no more data is returned
+        if not data:
+            break
+        
+        # Append the data to the list
+        json_data.extend(data)
+        
+        # Increment the page for the next iteration
+        page += 1
+    
+    # Convert the list of JSON data to a Pandas DataFrame
+    df = pd.DataFrame(json_data)
+    
+    # Display the resulting DataFrame
+    print("Data Frame:")
+    print(df.head())
+
+if __name__ == "__main__":
+    main()
+
+```
 
 ## Example Response
 
