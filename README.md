@@ -37,3 +37,38 @@ Before running the Azure Function, make sure you have the following:
    ```bash
    git clone https://github.com/surajmnit/publicbookdataset.git
    cd publicbookdataset
+
+2. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+
+### Usage
+
+Deploy the Azure Function to your Azure Function App.
+Trigger the function by accessing the endpoint:
+
+   ```bash
+    Copy code
+    curl https://yourfunctionapp.azurewebsites.net/api/getbooks?page=1&pagesize=10&name=books.csv
+    Adjust the parameters as needed.
+    Configuration
+
+Ensure that the following environment variables or configuration settings are set:
+
+AZURE_CLIENT_ID
+AZURE_CLIENT_SECRET
+AZURE_TENANT_ID
+AZURE_STORAGE_ACCOUNT_URL
+KEY_VAULT_URL
+
+
+### Contributing
+
+We welcome contributions! If you find a bug or have an enhancement request, please follow the Contributing Guidelines.
+
+Fork the repository.
+Create a new branch: git checkout -b feature/new-feature.
+Make your changes and commit: git commit -m 'Add new feature'.
+Push to the branch: git push origin feature/new-feature.
+Submit a pull request.
