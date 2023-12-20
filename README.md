@@ -43,7 +43,7 @@ This repository contains an Azure Function that fetches book data from a CSV fil
   {"bookID": "2", "title": "Author 2", ...},
   ...
 ]
-
+```
 
 ## Additional Information
 
